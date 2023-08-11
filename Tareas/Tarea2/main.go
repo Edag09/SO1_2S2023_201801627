@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -13,6 +14,7 @@ type Student struct {
 func main() {
 	http.HandleFunc("/data", data)
 	http.ListenAndServe(":4200", nil)
+	fmt.Println("Listen on port 4200")
 }
 
 func data(w http.ResponseWriter, r *http.Request) {

@@ -1,0 +1,2 @@
+#Colocamos el lenguaje que vamos a usar
+FROM go:1
