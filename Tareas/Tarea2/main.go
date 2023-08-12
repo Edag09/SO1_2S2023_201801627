@@ -13,8 +13,8 @@ type Student struct {
 
 func main() {
 	http.HandleFunc("/data", data)
-	http.ListenAndServe(":4200", nil)
-	fmt.Println("Listen on port 4200")
+	http.ListenAndServe(":3000", nil)
+	fmt.Println("Listen on port 3000")
 }
 
 func data(w http.ResponseWriter, r *http.Request) {
