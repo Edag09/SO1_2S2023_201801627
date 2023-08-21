@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Space+Mono&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+.title-img{
+    display: flex;
+    align-items: center;
+    margin-left: 35%;
+    margin-top: 2%;
+}
+
+.title{
+    font-family: 'Indie Flower', cursive;
+    font-size: 90px;
+    margin-right: 25px; 
+    color: #6cf3ff;
+}
+
+.title-cont img{
+    padding: 4%; 
+    max-width: 100px;
+}
+
+.data{
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    margin-top: 2%;
+    margin-left: 35%;
+    color: #6cf3ff;
+}
+
+/*En este espacio va todo el diseño del formulario*/
+
+.conteiner-forms{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: 2%;
+    flex-direction: column;
+    margin-right: 50%;
+}
+
+.conteiner-dataf{
+    padding: 10px;
+}
+
+.form-data {
+    background-color: lightgray;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form-data h1{
+    font-family: 'Space Mono', monospace;
+    font-size: 30px;
+    padding: 25px;
+}
+
+.form-data input{
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.form-data label{
+    font-family: 'Space Mono', monospace;
+    text-align: left;
+}
+
+.form-data button{
+    margin: 5px;
+    padding: 5%;
+    border-radius: 5px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.form-data button:hover{
+    background-color: #45a049;
+}
+
+/*En este espacio va todo el diseño de la tabla*/
+
+.conteiner-table{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    margin-left: 25%;
+}
+
+table {
+    border-collapse: collapse;
+    border-radius: 50%;
+    width: 50%;
+    background-color: #bad1ff;
+    border: 1px solid #140f07;
+}
+
+th, td {
+    padding: 8px;
+    border: 1px solid #140f07;
+    background: gainsboro;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
