@@ -2,16 +2,18 @@ import React, { useState } from 'react';
 
 function Formulario({ onAgregar }) {
   const [nombre, setNombre] = useState('');
+  const [artista, setArtista] = useState('');
   const [genero, setGenero] = useState('');
   const [fecha, setFecha] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const nuevoDato = { nombre, genero, fecha };
+    const nuevoDato = { nombre, genero, fecha, artista };
     onAgregar(nuevoDato);
     setNombre('');
     setGenero('');
     setFecha('');
+    setArtista('');
   };
 
   return (
@@ -30,6 +32,16 @@ function Formulario({ onAgregar }) {
                 </div>
                 <br></br>
                 <div>
+                    <label>Artista:</label>
+                    <input
+                    type="text"
+                    value={artista}
+                    placeholder='The Chainsmokers'
+                    onChange={(event) => setArtista(event.target.value)} required
+                    />
+                </div>
+                <br></br>
+                <div>
                     <label>Genero:</label>
                     <input
                     type="text"
@@ -38,7 +50,6 @@ function Formulario({ onAgregar }) {
                     onChange={(event) => setGenero(event.target.value)} required
                     />
                 </div>
-                <br></br>
                 <div>
                     <label>Fecha de Lanzamiento: </label>
                     <input 

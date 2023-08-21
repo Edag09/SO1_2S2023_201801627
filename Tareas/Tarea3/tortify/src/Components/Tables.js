@@ -8,6 +8,7 @@ function Tabla({ datos }) {
             <thead>
                 <tr>
                     <th>Nombre</th>
+                    <th>Artista</th>
                     <th>Genero</th>
                     <th>Fecha de Lanzamiento</th>
                 </tr>
@@ -16,6 +17,7 @@ function Tabla({ datos }) {
                 {datos.map((dato, index) => (
                     <tr key={index}>
                     <td>{dato.nombre}</td>
+                    <td>{dato.artista}</td>
                     <td>{dato.genero}</td>
                     <td>{dato.fecha}</td>
                 </tr>
