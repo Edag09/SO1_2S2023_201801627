@@ -6,15 +6,33 @@ function Formulario({ onAgregar }) {
   const [genero, setGenero] = useState('');
   const [fecha, setFecha] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const nuevoDato = { nombre, genero, fecha, artista };
+    const nuevoDato = { nombre, artista, genero, fecha };
     onAgregar(nuevoDato);
     setNombre('');
     setGenero('');
     setFecha('');
     setArtista('');
+
+    const response = await fetch('http://localhost:8080/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(nuevoDato),
+    });
+
+    if (response.ok) {
+        alert("Canción guardada con éxito");
+        console.log(nuevoDato);
+    } else {
+        alert("Error al guardar la canción");
+    }
+
   };
+
+  
 
   return (
     <div className='conteiner-forms'>

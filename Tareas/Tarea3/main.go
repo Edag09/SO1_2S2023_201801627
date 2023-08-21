@@ -6,30 +6,42 @@ import (
 	"log"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func main() {
 	app := fiber.New()      // Create a new Fiber instance
 	err := Config.Connect() // Connect to the database
+	app.Use(cors.New(cors.Config{
+		AllowCredentials: true,
+	}))
 
 	if err != nil {
 		log.Fatal("Error", err)
 	}
 
-	insertData()
+	app.Post("/", func(c *fiber.Ctx) error {
+		var cancion Entities.Canciones
+		if err := c.BodyParser(&cancion); err != nil {
+			return err
+		}
+		insertData(cancion)
 
-	err = app.Listen(":8000") // Listen on port 8000
+		return c.JSON(cancion)
+	})
+
+	err = app.Listen(":8080") // Listen on port 8080
 	if err != nil {
 		log.Fatal("Error", err)
 	}
 }
 
-func insertData() {
+func insertData(cancion Entities.Canciones) {
 	songs := Entities.Canciones{
-		Nombre_cancion: "New Divice",
-		Nombre_artista: "Linkin Park",
-		Genero_cancion: "Rock",
-		Fecha:          "2009-06-12",
+		Nombre:  cancion.Nombre,
+		Artista: cancion.Artista,
+		Genero:  cancion.Genero,
+		Fecha:   cancion.Fecha,
 	}
 	Config.Database.Create(&songs)
 }

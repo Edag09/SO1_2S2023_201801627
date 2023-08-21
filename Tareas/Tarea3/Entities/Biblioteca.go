@@ -8,8 +8,8 @@ import (
 
 type Canciones struct {
 	gorm.Model
-	Nombre_cancion string //Nombre de la canción
-	Nombre_artista string //Nombre del artista
-	Genero_cancion string //Genero de la canción
-	Fecha          string //Fecha de lanzamiento
+	Nombre  string //Nombre de la canción
+	Artista string //Nombre del artista
+	Genero  string //Genero de la canción
+	Fecha   string //Fecha de lanzamiento
 }
