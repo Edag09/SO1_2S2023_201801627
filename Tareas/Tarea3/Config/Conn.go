@@ -7,8 +7,8 @@ import (
 	"gorm.io/gorm"
 )
 
-var Database *gorm.DB                                                                     //Creamos una variable global para la base de datos
-var Uri = "root:090799@tcp(localhost:33061)/player?charset=utf8&parseTime=True&loc=Local" //Aqui es donde conectamos a la base de datos
+var Database *gorm.DB                                                                        //Creamos una variable global para la base de datos
+var Uri = "root:090799@tcp(database_container)/player?charset=utf8&parseTime=True&loc=Local" //Aqui es donde conectamos a la base de datos
 
 func Connect() error {
 	var err error
