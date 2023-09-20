@@ -2,11 +2,22 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os/exec"
 	"time"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
+	app := fiber.New()
+
+	err := app.Listen(":8000")
+
+	if err != nil {
+		log.Fatal("Error: ", err)
+	}
+
 	go repetFuncRam()
 	time.Sleep(1000 * time.Second)
 }
