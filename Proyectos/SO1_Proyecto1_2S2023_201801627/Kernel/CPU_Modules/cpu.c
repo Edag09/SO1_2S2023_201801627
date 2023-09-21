@@ -19,7 +19,7 @@ char *name = "cpu_201801627";
 static int content_file(struct seq_file *file, void *v) {
     unsigned long rss;
 
-    seq_printf(file, "{\"process\":[\n");
+    seq_printf(file, "{\"process\":[");
 
     int count_running = 0, count_sleeping = 0, count_zombie = 0, count_stopped = 0;
 
@@ -60,11 +60,11 @@ static int content_file(struct seq_file *file, void *v) {
         if (next_task(task) == &init_task) {
             seq_printf(file, "]}");
         } else {
-            seq_printf(file, "]}\n");
+            seq_printf(file, "]}");
         }
     }
 
-    seq_printf(file, "],\"summary\": {\"running\": %d, \"sleeping\": %d, \"stopped\": %d, \"zombie\": %d }\n", count_running, count_sleeping, count_stopped, count_zombie);
+    seq_printf(file, "],\"summary\": {\"running\": %d, \"sleeping\": %d, \"stopped\": %d, \"zombie\": %d }", count_running, count_sleeping, count_stopped, count_zombie);
 
     return 0;
 }
