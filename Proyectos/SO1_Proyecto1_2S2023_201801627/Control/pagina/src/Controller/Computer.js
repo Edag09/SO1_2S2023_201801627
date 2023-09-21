@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './Style.css';
 
+
 const Computers = (props) => {
     const params = props.miparametro;
     const [mensaje, setMensaje] = useState('');
     const [mess, setMessage] = useState('');
-
-    useEffect(() => {
-        fetch('/') // Realiza la solicitud al servidor
-          .then((response) => response.json())
-          .then((data) => {
-            // Actualiza el estado con el mensaje del servidor
-            setMessage(data.message);
-          })
-          .catch((error) => {
-            console.error('Error:', error);
-          });
-      }, []);
+    const [ram, setRam] = useState('');
+    const [cpu, setCpu] = useState('');
 
     const handleInputChange = (e) => {
         setMensaje(e.target.value);
