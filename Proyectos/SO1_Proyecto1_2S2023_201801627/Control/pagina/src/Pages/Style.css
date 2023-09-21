@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header{
+    width: 100%;
+    height: 100px;
+    background-color: #053B50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.title-images{
+    display: flex;
+    align-items: center;
+}
+
+#images-home{
+    padding: 15%;
+}
+
+#name-title{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 10px;
+    font-family: 'Lilita One', cursive;
+    font-size: 50px;
+}
+
+.title{
+    margin-left: 15%;
+}
+
+#modules-kernel{
+    font-family: 'Lilita One', cursive;
+    color: white;
+    font-size: 50px;
+}
+
+.options{
+    display: flex;
+    align-items: center;
+    width: 500px;
+    position: relative;
+}
+
+#real-time{
+    text-decoration: none;
+    color: white;
+    font-family: 'Montserrat Alternates', sans-serif;
+    margin: 100px;
+}
+
+#historial{
+    text-decoration: none;
+    color: white;
+    font-family: 'Montserrat Alternates', sans-serif;
+}

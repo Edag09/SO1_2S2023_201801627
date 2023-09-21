@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+
+.container{
+    width: 1645px;
+    height: 1225px;
+    border: 1px solid #64CCC5;
+    margin-top: 1%;
+}
+
+#ram{
+    width: 822px;
+    height: 500px;
+    float: left;
+    position: absolute;
+    text-align: center;
+}
+
+#ram h1{
+    font-family: 'Amatic SC', cursive;
+    font-size: 45px;
+}
+
+#cpu{
+    width: 822px;
+    height: 500px;
+    float: right;
+    text-align: center;
+}
+
+#cpu h1{
+    font-family: 'Amatic SC', cursive;
+    font-size: 45px;
+}
+
+#pid{
+    width: 800px;
+    height: 70px;
+    margin-top: 525px;
+    margin-left: 25%;
+    position: inherit;
+    text-align: center;
+    padding: 8px;
+}
+
+#title-pid{
+    font-family: 'Amatic SC', cursive;
+    font-size: 50px;
+    position: absolute;
+    margin-left: -150px;
+}
+
+#btn-kill{
+    padding: 10px 20px;
+    background-color: #22668D;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 25px;
+    font-family: 'Amatic SC', cursive;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    margin-left: 100px;
+}
+
+#btn-kill:hover{
+    background-color: #8ECDDD;
+    color: #22668D;
+}
+
+.txt-box{
+    margin: 10px;
+    height: 35px;
+    font-size: 25px;
+    border: none;
+    border-radius: 15px;
+    font-family: 'Kalam', cursive;
+}
+
+#stats{
+    width: 1480px;
+    height: 45%;
+    border: 1px solid black;
+    margin-top: 50px;
+    margin-left: 5%;
+}
+
+/*Style for the empty section*/
+
+.empty-section{
+    width: 1645px;
+    height: 650px;
+    border: 1px solid black;
+    margin-top: 1%;
+}
