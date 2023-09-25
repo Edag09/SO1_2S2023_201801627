@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 function App() {
-  const [data, setData] = useState({
-    total: 0,
-    free: 0,
-    used: 0,
-  });
+  const [ram, setRam] = useState({});
+  const [cpu, setCpu] = useState({});
 
   useEffect(() => {
     // Realiza una solicitud GET utilizando fetch
@@ -17,23 +14,44 @@ function App() {
         return response.json(); // Analiza el JSON de la respuesta
       })
       .then((json) => {
-        setData(json); // Almacena los datos en el estado
+        setRam(JSON.parse(json)); // Almacena los datos en el estado
       })
       .catch((error) => {
         console.error('Error al realizar la solicitud:', error.message);
       });
   }, []);
 
+
+  useEffect(() => {
+    // Realiza una solicitud GET utilizando fetch
+    fetch('http://localhost:4000/cpu')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('La solicitud no fue exitosa');
+        }
+        return response.json(); // Analiza el JSON de la respuesta
+      })
+      .then((json) => {
+        setCpu(JSON.parse(json)); // Parceamos los datos en el estado
+      })
+      .catch((error) => {
+        console.error('Error al realizar la solicitud:', error.message);
+      });
+  }, []);
+
+
   return (
     <div>
-      <h1>Información del JSON</h1>
-      <div>
-        <p><strong>Total:</strong> {data.total}</p>
-        <p><strong>Free:</strong> {data.free}</p>
-        <p><strong>Used:</strong> {data.used}</p>
-      </div>
+      <h1>Datos de RAM</h1>
+      <p>Total: {ram.total}</p>
+      <p>Free: {ram.free}</p>
+      <p>Used: {ram.used}</p>
+
+      <h1>Datos de CPU</h1>
+      
     </div>
   );
 }
 
 export default App;
+

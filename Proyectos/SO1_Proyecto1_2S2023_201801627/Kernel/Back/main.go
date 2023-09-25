@@ -1,103 +1,54 @@
 package main
 
 import (
-	"bufio"
-	"database/sql"
+	"Back/Config"
 	"fmt"
-	"log"
-	"os"
 	"os/exec"
-	"strconv"
-	"strings"
 	"time"
-
-	_ "github.com/go-sql-driver/mysql"
 )
+
+type Ram_info struct {
+	Total int `json:"total"`
+	Free  int `json:"free"`
+	Used  int `json:"used"`
+}
 
 func main() {
 
-	count := 0
-	var prevIdleTime, prevTotalTime uint64
+	go repetFuncRam()
+	time.Sleep(1000 * time.Second)
+}
 
-	for {
+func repetFuncRam() {
+	for range time.Tick(1 * time.Second) {
+		fmt.Println("CPU")
+		cpu := getModuleCPU()
 
-		catCpuReader, err := exec.Command("sh", "-c", "cat /proc/cpu_201801627").Output()
+		fmt.Println("RAM")
+		ram := getModuleRAM()
 
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		catRamReader, err := exec.Command("sh", "-c", "cat /proc/ram_201801627").Output()
-
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		catCpuString := string(catCpuReader)
-		catRamString := string(catRamReader)
-
-		file, err := os.Open("/proc/stat")
-
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		scanner := bufio.NewScanner(file)
-		scanner.Scan()
-
-		fmt.Println(scanner.Text()[5:])
-		cpuLine := scanner.Text()[5:]
-		file.Close()
-
-		if err := scanner.Err(); err != nil {
-			log.Fatal(err)
-		}
-
-		values := strings.Fields(cpuLine)
-		idleTime, _ := strconv.ParseUint(values[3], 10, 64)
-		totalTime := uint64(0)
-
-		for _, item := range values[1:] {
-			value, _ := strconv.ParseUint(item, 10, 64)
-			totalTime += value
-		}
-
-		if count > 0 {
-			deltaIdleTime := idleTime - prevIdleTime
-			deltaTotalTime := totalTime - prevTotalTime
-			cpuUsage := (1.0 - float64(deltaIdleTime)/float64(deltaTotalTime)) * 100.0
-			catCpuString += fmt.Sprintf("\"cpu_usage\": %f}", cpuUsage)
-		} else {
-			catCpuString += fmt.Sprintf("\"cpu_usage\": %f}", 0.0)
-		}
-
-		prevIdleTime = idleTime
-		prevTotalTime = totalTime
-
-		count++
-
-		db, err := sql.Open("mysql", "root:090799@tcp(localhost:33064)/modules?charset=utf8&parseTime=True&loc=Local")
-
-		if err != nil {
-			panic(err.Error())
-		}
-
-		defer db.Close()
-
-		querry := fmt.Sprintf("INSERT INTO cpu_modules(cpu) VALUES ('%s')", catCpuString)
-		_, err = db.Exec(querry)
-
-		if err != nil {
-			panic(err.Error())
-		}
-
-		querry = fmt.Sprintf("INSERT INTO ram_modules(ram) VALUES ('%s')", catRamString)
-		_, err = db.Exec(querry)
-
-		if err != nil {
-			panic(err.Error())
-		}
-
-		time.Sleep(time.Second)
+		Config.Conect_db(ram, cpu)
 	}
+}
+
+func getModuleRAM() string {
+	cmd := exec.Command("sh", "-c", "cat /proc/ram_201801627")
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	out := string(output)
+	return out
+}
+
+func getModuleCPU() string {
+	cmd := exec.Command("sh", "-c", "cat /proc/cpu_201801627")
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	out := string(output)
+	return out
 }
