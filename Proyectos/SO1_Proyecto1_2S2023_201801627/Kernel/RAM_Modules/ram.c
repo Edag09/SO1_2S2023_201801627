@@ -24,13 +24,13 @@ MODULE_AUTHOR("Eduardo Rene Agustin Mendoza");
 
 static int escribir_archivo(struct seq_file *archivo, void *v){
     init_meminfo();
-    seq_printf(archivo, "{\n\"total\": %ld", (ram.totalram << PAGE_SHIFT));
-    seq_printf(archivo, ", \n");
+    seq_printf(archivo, "{\"total\": %ld", (ram.totalram << PAGE_SHIFT));
+    seq_printf(archivo, ",");
     seq_printf(archivo, "\"free\": %ld", (ram.freeram << PAGE_SHIFT));
-    seq_printf(archivo, ", \n");
+    seq_printf(archivo, ",");
     seq_printf(archivo, "\"used\": %ld", ((ram.totalram - ram.freeram) << PAGE_SHIFT)+'\n');
-    seq_printf(archivo, "\n");
-    seq_printf(archivo, "}\n");
+    seq_printf(archivo, "");
+    seq_printf(archivo, "}");
     return 0;
 }
 
