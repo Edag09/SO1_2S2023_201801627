@@ -14,6 +14,10 @@
 
 ## Web UI <a id="web"></a>
 
+![Alt text](Imagenes/Principal.png)
+
+**Esta es la pagina princial donde podremos ver la interfaz del usuario, con la cual podra interactuar para poder ver los estados de las computadoras**
+
 ## Database <a id="bd"></a>
 **Para crear nuestra instancia para la base de datos debemos de correr el siguiente comando**
 
@@ -43,3 +47,9 @@ Password: Debemos de colocar la contraseña que se establecio cuando se creo la 
 
 ![Connection](Imagenes/Connection.png)
 
+
+## Modulos de Kernel <a id="rc"></a>
+
+![Alt text](Imagenes/Modules.png)
+
+**Como podremos darnos cuenta dentro de la carpeta proc tenemos los modulos de ram y de cpu los cuales estan identificados por medio de mi carnet el cual es 201801627**

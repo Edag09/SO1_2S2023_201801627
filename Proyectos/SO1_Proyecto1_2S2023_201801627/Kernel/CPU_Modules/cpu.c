@@ -6,15 +6,14 @@
 #include <linux/sched.h>
 #include <linux/mm.h>
 
-MODULE_LICENSE("GPL");
-MODULE_DESCRIPTION("CPU Module - Get data for process, PID, name, child and more");
 MODULE_AUTHOR("Eduardo René Agustin Mendoza");
+MODULE_DESCRIPTION("CPU Module");
+MODULE_LICENSE("GPL");
 
 struct task_struct *task;
 struct task_struct *task_child;
 struct list_head *list;
 
-char *name = "cpu_201801627";
 
 static int content_file(struct seq_file *file, void *v) {
     unsigned long rss;
@@ -60,11 +59,11 @@ static int content_file(struct seq_file *file, void *v) {
         if (next_task(task) == &init_task) {
             seq_printf(file, "]}");
         } else {
-            seq_printf(file, "]}");
+            seq_printf(file, "]},");
         }
     }
 
-    seq_printf(file, "],\"summary\": {\"running\": %d, \"sleeping\": %d, \"stopped\": %d, \"zombie\": %d }", count_running, count_sleeping, count_stopped, count_zombie);
+    seq_printf(file, "],\"summary\": {\"running\": %d, \"sleeping\": %d, \"stopped\": %d, \"zombie\": %d },", count_running, count_sleeping, count_stopped, count_zombie);
 
     return 0;
 }
@@ -79,13 +78,13 @@ static struct proc_ops data = {
 };
 
 static int __init add_module(void) {
-    proc_create(name, 0, NULL, &data);
+    proc_create("cpu_201801627", 0, NULL, &data);
     printk(KERN_INFO "Eduardo René Agustin Mendoza\n");
     return 0;
 }
 
 static void __exit remove_module(void) {
-    remove_proc_entry(name, NULL);
+    remove_proc_entry("cpu_201801627", NULL);
     printk(KERN_INFO "Segundo Semestre 2023\n");
 }
 

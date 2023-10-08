@@ -14,7 +14,7 @@ import (
 
 func Conect_db(ram, cpu string) {
 	count := 0
-	var antes, despues uint64
+	var prevIdleTime, prevTotalTime uint64
 
 	file, err := os.Open("/proc/stat")
 
@@ -26,33 +26,33 @@ func Conect_db(ram, cpu string) {
 	scanner.Scan()
 
 	fmt.Println(scanner.Text()[5:])
-	info_cpu := scanner.Text()[5:]
+	cpuLine := scanner.Text()[5:]
 	file.Close()
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
 
-	values := strings.Fields(info_cpu)
-	time_ahora, _ := strconv.ParseUint(values[3], 10, 64)
-	cuanto_se_tarda := uint64(0)
+	values := strings.Fields(cpuLine)
+	idleTime, _ := strconv.ParseUint(values[3], 10, 64)
+	totalTime := uint64(0)
 
 	for _, item := range values[1:] {
 		value, _ := strconv.ParseUint(item, 10, 64)
-		cuanto_se_tarda += value
+		totalTime += value
 	}
 
 	if count > 0 {
-		ahora := time_ahora - antes
-		que_vamos_a_usar := cuanto_se_tarda - despues
-		usamos_del_cpu := (1.0 - float64(ahora)/float64(que_vamos_a_usar)) * 100.0
-		cpu += fmt.Sprintf("\"Use \": %f}", usamos_del_cpu)
+		deltaIdleTime := idleTime - prevIdleTime
+		deltaTotalTime := totalTime - prevTotalTime
+		cpuUsage := (1.0 - float64(deltaIdleTime)/float64(deltaTotalTime)) * 100.0
+		cpu += fmt.Sprintf("\"cpu_usage\": %f}", cpuUsage)
 	} else {
-		cpu += fmt.Sprintf("\"Use \": %f}", 0.0)
+		cpu += fmt.Sprintf("\"cpu_usage\": %f}", 0.0)
 	}
 
-	antes = time_ahora
-	despues = cuanto_se_tarda
+	prevIdleTime = idleTime
+	prevTotalTime = totalTime
 
 	count++
 

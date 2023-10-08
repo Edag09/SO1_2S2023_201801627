@@ -29,7 +29,6 @@ MODULE_INFO(retpoline, "Y");
 
 static const struct modversion_info ____versions[]
 __used __section("__versions") = {
-	{ 0x45db931b, "proc_create" },
 	{ 0x122c3a7e, "_printk" },
 	{ 0x5b8239ca, "__x86_return_thunk" },
 	{ 0xce4f6bb6, "single_open" },
@@ -38,10 +37,11 @@ __used __section("__versions") = {
 	{ 0xac0dde12, "remove_proc_entry" },
 	{ 0xd8e57183, "seq_read" },
 	{ 0xbdfb6dbb, "__fentry__" },
+	{ 0x45db931b, "proc_create" },
 	{ 0x453e7dc, "module_layout" },
 };
 
 MODULE_INFO(depends, "");
 
 
-MODULE_INFO(srcversion, "C98CB7201E028D38E66355B");
+MODULE_INFO(srcversion, "79E23BFC175F12D3213FD27");

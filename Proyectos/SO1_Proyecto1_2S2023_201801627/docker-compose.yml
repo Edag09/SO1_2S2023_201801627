@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  database:
+    image: 'mysql'
+    container_name: "database_container"
+    environment:
+      MYSQL_ROOT_PASSWORD: 090799
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+        - "33061:3306"
+  
+  backend:
+    image: eduardoagus09/conteiner_backendgo
+    container_name: "backend_container"
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+  
+  frontend:
+    image: eduardoagus09/conteiner_frontendreact
+    container_name: "frontend_container"
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  mysql-data:

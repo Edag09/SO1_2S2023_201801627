@@ -18,7 +18,3 @@ router.get('/ram', (req, res) => {
         res.status(400).json({"message": "Failed Connection"});
     }
 });
-
-/*router.get('/cpu', (req, res) => {
-
-});*/

@@ -21,10 +21,7 @@ func main() {
 
 func repetFuncRam() {
 	for range time.Tick(1 * time.Second) {
-		fmt.Println("CPU")
 		cpu := getModuleCPU()
-
-		fmt.Println("RAM")
 		ram := getModuleRAM()
 
 		Config.Conect_db(ram, cpu)
@@ -32,23 +29,21 @@ func repetFuncRam() {
 }
 
 func getModuleRAM() string {
-	cmd := exec.Command("sh", "-c", "cat /proc/ram_201801627")
-	output, err := cmd.CombinedOutput()
+	ram, err := exec.Command("sh", "-c", "cat /proc/ram_201801627").Output()
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	out := string(output)
+	out := string(ram)
 	return out
 }
 
 func getModuleCPU() string {
-	cmd := exec.Command("sh", "-c", "cat /proc/cpu_201801627")
-	output, err := cmd.CombinedOutput()
+	cpu, err := exec.Command("sh", "-c", "cat /proc/cpu_201801627").Output()
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	out := string(output)
+	out := string(cpu)
 	return out
 }

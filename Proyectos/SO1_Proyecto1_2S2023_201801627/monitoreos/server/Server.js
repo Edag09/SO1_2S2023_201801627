@@ -4,7 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 // Importa la configuración de la conexión a la base de datos
-const db = require('./Prueba');
+const db = require('./Connection');
 
 // Importa las rutas
 const routes = require('./Routes');
