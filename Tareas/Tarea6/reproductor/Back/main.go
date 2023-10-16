@@ -1,9 +1,20 @@
 package main
 
 import (
-	config "Back/Config"
+	"Back/Config"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	config.Connect_db()
+	app := fiber.New()
+
+	Config.Connections()
+
+	app.Post("/insert", Config.Inserts)
+
+	err := app.Listen(":8000")
+	if err != nil {
+		return
+	}
 }
